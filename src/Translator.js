@@ -47,7 +47,7 @@ class Translator extends React.Component {
     let ret = "";
     let mapping = lang === "te" ? this.state.te : this.state.et;
     for (let char of input) {
-      ret += mapping[char];
+      ret += char in mapping ? mapping[char] : "";
     }
     return ret;
   }
