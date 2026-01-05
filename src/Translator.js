@@ -57,7 +57,7 @@ class Translator extends React.Component {
     return (
       <div className="translator">
         <div className="translator__card">
-          <h2 className="translator__title">Translator</h2>
+          <h2 className="translator__title">Key Mapper</h2>
           <div className="translator__toggle-group">
             <label className="translator__toggle-option">
               <input type="radio" value="te" checked={this.state.translateTo === "te"} onChange={this.handleLanguage} />

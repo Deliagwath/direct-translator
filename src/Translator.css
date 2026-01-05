@@ -30,8 +30,8 @@
   --color-border-focus: rgba(212, 168, 83, 0.4);
   
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Consolas', monospace;
   
   /* Spacing scale */
@@ -65,21 +65,20 @@
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --------------------------------------------------------------------------
-   Google Fonts Import
-   -------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* --------------------------------------------------------------------------
    Base Container
    -------------------------------------------------------------------------- */
 .translator {
   min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background: var(--color-bg-primary);
+  box-sizing: border-box;
   
   /* Subtle gradient overlay */
   background-image: 
@@ -88,6 +87,7 @@
   
   /* Noise texture for depth */
   position: relative;
+  overflow: hidden;
 }
 
 .translator::before {
@@ -158,14 +158,13 @@
   background-clip: text;
 }
 
-/* Thai script subtitle */
 .translator__title::after {
-  content: 'แปลงคีย์บอร์ด';
+  content: 'TH ⇄ EN';
   display: block;
   font-family: var(--font-body);
   font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   color: var(--color-text-muted);
   -webkit-text-fill-color: var(--color-text-muted);
   margin-top: var(--space-xs);
@@ -305,13 +304,10 @@
     color var(--transition-base);
 }
 
-/* When background is black (hidden mode) */
 .translator__textarea--output[style*="backgroundColor: black"] {
-  color: transparent;
-  text-shadow: none;
+  color: black;
 }
 
-/* When background is white (revealed mode) */
 .translator__textarea--output[style*="backgroundColor: white"] {
   color: #0d0d0f !important;
 }
