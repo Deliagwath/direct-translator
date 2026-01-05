@@ -82,7 +82,7 @@ class Translator extends React.Component {
           </div>
           <div className="translator__field-group">
             <span className="translator__field-label">Output</span>
-            <textarea ref={(textarea) => this.copyArea = textarea} className="translator__textarea translator__textarea--output" style={{backgroundColor: this.state.outputBackground}} value={this.state.translated} readOnly />
+            <textarea ref={(textarea) => this.copyArea = textarea} className={`translator__textarea translator__textarea--output ${this.state.outputBackground === "black" ? "translator__textarea--hidden" : "translator__textarea--visible"}`} value={this.state.translated} readOnly />
           </div>
           <div className="translator__actions">
             <button className="translator__button" onClick={this.handleVisibility}>

@@ -304,12 +304,15 @@
     color var(--transition-base);
 }
 
-.translator__textarea--output[style*="backgroundColor: black"] {
-  color: black;
+.translator__textarea--hidden {
+  background-color: var(--color-bg-input);
+  color: transparent;
+  user-select: none;
 }
 
-.translator__textarea--output[style*="backgroundColor: white"] {
-  color: #0d0d0f !important;
+.translator__textarea--visible {
+  background-color: var(--color-bg-input);
+  color: var(--color-text-primary);
 }
 
 /* --------------------------------------------------------------------------
