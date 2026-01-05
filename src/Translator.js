@@ -1,4 +1,5 @@
 import React from 'react';
+import './Translator.css';
 
 class Translator extends React.Component {
   constructor(props) {
@@ -54,20 +55,49 @@ class Translator extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Translator</h2>
-        <div>
-          TH-EN
-          <input type="radio" value="te" checked={this.state.translateTo === "te"} onChange={this.handleLanguage} />
+      <div className="translator">
+        <div className="translator__card">
+          <h2 className="translator__title">Translator</h2>
+          <div className="translator__toggle-group">
+            <label className="translator__toggle-option">
+              <input type="radio" value="te" checked={this.state.translateTo === "te"} onChange={this.handleLanguage} />
+              <span className="translator__toggle-label">
+                <span>TH</span>
+                <span className="arrow">→</span>
+                <span>EN</span>
+              </span>
+            </label>
+            <label className="translator__toggle-option">
+              <input type="radio" value="et" checked={this.state.translateTo === "et"} onChange={this.handleLanguage} />
+              <span className="translator__toggle-label">
+                <span>EN</span>
+                <span className="arrow">→</span>
+                <span>TH</span>
+              </span>
+            </label>
+          </div>
+          <div className="translator__field-group">
+            <span className="translator__field-label">Input</span>
+            <textarea className="translator__textarea" value={this.state.input} onChange={this.handleTranslate} placeholder="Type or paste text here..." />
+          </div>
+          <div className="translator__field-group">
+            <span className="translator__field-label">Output</span>
+            <textarea ref={(textarea) => this.copyArea = textarea} className="translator__textarea translator__textarea--output" style={{backgroundColor: this.state.outputBackground}} value={this.state.translated} readOnly />
+          </div>
+          <div className="translator__actions">
+            <button className="translator__button" onClick={this.handleVisibility}>
+              <span className="translator__button-icon">{this.state.outputBackground === "black" ? "👁" : "👁‍🗨"}</span>
+              {this.state.outputBackground === "black" ? "Show" : "Hide"}
+            </button>
+            {document.queryCommandSupported("copy") && <button className="translator__button translator__button--primary" onClick={this.handleCopy}>
+              <span className="translator__button-icon">📋</span>
+              Copy
+            </button>}
+          </div>
+          <div className={`translator__copy-success ${this.state.copySuccess ? 'translator__copy-success--visible' : ''}`}>
+            {this.state.copySuccess || '\u00A0'}
+          </div>
         </div>
-        <div>
-          EN-TH
-          <input type="radio" value="et" checked={this.state.translateTo === "et"} onChange={this.handleLanguage} />
-        </div>
-        <input value={this.state.input} onChange={this.handleTranslate} /><br/>
-        <input ref={(textarea) => this.copyArea = textarea} style={{backgroundColor: this.state.outputBackground}} value={this.state.translated}/>
-        <button onClick={this.handleVisibility}>Show</button>{document.queryCommandSupported("copy") && <button onClick={this.handleCopy}>Copy</button>}
-        <h3>{this.state.copySuccess}</h3>
       </div>
     );
   }
